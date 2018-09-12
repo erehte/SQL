@@ -1,0 +1,25 @@
+DECLARE @id varchar(50) ,@colleg_name varchar(50), @college_address varchar(50)
+
+DECLARE MynewCursor CURSOR -- Declare cursor name
+
+FOR
+Select college_id, college_name, college_address FROM college --where college_id =6
+
+OPEN MynewCursor -- open the cursor
+
+FETCH NEXT FROM MynewCursor
+INTO @id,@colleg_name, @college_address
+
+--PRINT @colleg_name + ' ' + @college_address -- print the name
+
+WHILE @@FETCH_STATUS = 0
+
+BEGIN
+	SELECT @id +'' + @colleg_name +'   ' + @college_address -- print the name
+	FETCH NEXT FROM MynewCursor		
+	INTO @id, @colleg_name, @college_address
+END
+
+CLOSE MynewCursor
+
+DEALLOCATE MynewCursor
