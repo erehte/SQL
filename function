@@ -1,0 +1,17 @@
+SELECT TOP 1000 [college_id]
+      ,[college_name]
+      ,[college_address]
+      ,[college_phone]
+      ,[college_email]
+      ,[college_website]
+FROM [alltables].[dbo].[college]
+
+select * from [dbo].[TopTencollege] (1)
+
+Alter FUNCTION TopTencollege (@college_id varchar (50))
+RETURNS TABLE
+AS
+RETURN (
+SELECT TOP 5 college_id,college_name,college_address,college_phone,college_email,college_website
+FROM college
+		 )
